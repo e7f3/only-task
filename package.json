@@ -8,7 +8,7 @@
         "build:prod": "webpack --env mode=production",
         "build:dev": "webpack --env mode=development",
         "lint": "eslint src --ext .ts,.tsx",
-        "lint:styles": "stylelint 'src/**/*.{css,scss}'",
+        "lint:styles": "stylelint 'src/**/*.{css,scss}' --allow-empty-input",
         "type-check": "tsc --noEmit",
         "prepare": "husky",
         "pre-push": "pnpm type-check && pnpm lint && pnpm lint:styles && pnpm build:prod"
