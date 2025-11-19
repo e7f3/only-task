@@ -1,3 +1,5 @@
+import './styles/index.scss'
+
 const App = () => {
   return <div>Test</div>
 }
