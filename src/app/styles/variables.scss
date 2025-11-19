@@ -4,7 +4,7 @@
     --color-accent: #EF5DA8;
     --color-text: #42567A;
     --color-bg: #F4F5F9;
-    --color-border: rgba(66, 86, 122, 0.1);
+    --color-border: rgb(66 86 122 / 10%);
     --color-blue: #3877EE;
 
     // Градиенты
@@ -12,13 +12,11 @@
 
     // Типографика
     --font-family-main: 'PT Sans', sans-serif;
-
     --font-size-h1: 56px;
     --font-size-h2: 32px;
     --font-size-h3: 20px;
     --font-size-body: 16px;
     --font-size-small: 14px;
-
     --line-height-h1: 120%;
     --line-height-body: 150%;
 }
