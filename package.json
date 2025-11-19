@@ -4,11 +4,14 @@
     "description": "Modern React 19 + TypeScript 5 application",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack serve --mode development",
-        "build": "webpack --mode production",
+        "dev": "webpack serve --env port=3000 --env mode=development",
+        "build:prod": "webpack --env mode=production",
+        "build:dev": "webpack --env mode=development",
         "lint": "eslint src --ext .ts,.tsx",
         "lint:styles": "stylelint 'src/**/*.{css,scss}'",
-        "type-check": "tsc --noEmit"
+        "type-check": "tsc --noEmit",
+        "prepare": "husky",
+        "pre-push": "pnpm type-check && pnpm lint && pnpm lint:styles && pnpm build:prod"
     },
     "keywords": [],
     "author": "",
@@ -19,6 +22,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.26.0",
+        "husky": "^9.1.0",
         "@babel/preset-env": "^7.26.0",
         "@babel/preset-react": "^7.26.0",
         "@babel/preset-typescript": "^7.26.0",

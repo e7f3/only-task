@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Запуск проверок перед push..."
+
+echo "Проверка типов TypeScript..."
+pnpm type-check || exit 1
+
+echo "Проверка ESLint..."
+pnpm lint || exit 1
+
+echo "Проверка Stylelint..."
+pnpm lint:styles || exit 1
+
+echo "Production сборка..."
+pnpm build:prod || exit 1
+
+echo "Все проверки пройдены успешно!"
