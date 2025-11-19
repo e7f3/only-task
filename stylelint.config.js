@@ -52,5 +52,6 @@ module.exports = {
     'order/order': selectorOrdering,
     'order/properties-order': propertyOrdering,
     'declaration-empty-line-before': null,
+    'no-descending-specificity': null, // Отключаем из-за конфликта с order/order
   },
 }
