@@ -1,0 +1,62 @@
+.circleContainer {
+    $border-color: var(--color-primary);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: calc(var(--circle-radius, 265px) * 2);
+    height: calc(var(--circle-radius, 265px) * 2);
+
+    border: 1px solid rgb($border-color / 20%);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.point {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    margin-left: -3px;
+
+    cursor: pointer;
+
+    background: var(--color-text);
+    border-radius: 50%;
+
+    transition: all 0.3s ease;
+    transform-origin: center;
+
+    &:hover,
+    &.active {
+        z-index: 10;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 56px;
+        height: 56px;
+        margin-top: -28px;
+        margin-left: -28px;
+
+        border: 1px solid rgb(48 62 88 / 50%);
+
+        background: #F4F5F9;
+    }
+
+    .label {
+        display: none;
+
+        font-size: 20px;
+        color: var(--color-text);
+    }
+
+    &:hover .label,
+    &.active .label {
+        display: block;
+    }
+}

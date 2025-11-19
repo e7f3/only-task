@@ -7,6 +7,7 @@ import type { TimePeriod } from './types'
 
 export const HISTORICAL_PERIODS: readonly TimePeriod[] = [
   {
+    id: crypto.randomUUID(),
     yearFrom: 1980,
     yearTo: 1986,
     label: 'Science',
@@ -28,6 +29,7 @@ export const HISTORICAL_PERIODS: readonly TimePeriod[] = [
     ],
   },
   {
+    id: crypto.randomUUID(),
     yearFrom: 1987,
     yearTo: 1991,
     label: 'Cinema',
@@ -41,6 +43,7 @@ export const HISTORICAL_PERIODS: readonly TimePeriod[] = [
     ],
   },
   {
+    id: crypto.randomUUID(),
     yearFrom: 1992,
     yearTo: 1997,
     label: 'Tech',
@@ -51,6 +54,7 @@ export const HISTORICAL_PERIODS: readonly TimePeriod[] = [
     ],
   },
   {
+    id: crypto.randomUUID(),
     yearFrom: 1999,
     yearTo: 2004,
     label: 'Music',
@@ -60,6 +64,7 @@ export const HISTORICAL_PERIODS: readonly TimePeriod[] = [
     ],
   },
   {
+    id: crypto.randomUUID(),
     yearFrom: 2005,
     yearTo: 2014,
     label: 'World',
@@ -69,6 +74,7 @@ export const HISTORICAL_PERIODS: readonly TimePeriod[] = [
     ],
   },
   {
+    id: crypto.randomUUID(),
     yearFrom: 2015,
     yearTo: 2022,
     label: 'Pandemic',
