@@ -18,7 +18,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
  */
 export const buildCssLoader = (isDev: boolean) => {
   const cssLoader = {
-    test: /\.s[ac]ss$/i,
+    test: /\.(s[ac]ss|css)$/i,
     use: [
       // Создает <style> теги из JS строк (dev) или извлекает в файлы (prod)
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -28,6 +28,7 @@ export const buildCssLoader = (isDev: boolean) => {
         options: {
           modules: {
             auto: /\.module\..*$/,
+            namedExport: false,
             localIdentName: isDev
               ? '[path][name]__[local]--[hash:base64:5]'
               : '[hash:base64:8]',
