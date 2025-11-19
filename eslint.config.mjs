@@ -116,6 +116,7 @@ export default [
                         'internal',
                         ['sibling', 'parent'],
                         'index',
+                        'type',
                     ],
                     pathGroups: [
                         {
@@ -124,12 +125,13 @@ export default [
                             position: 'before',
                         },
                         {
-                            pattern: '@src/**',
+                            pattern: '@/**',
                             group: 'internal',
                         },
                     ],
-                    pathGroupsExcludedImportTypes: ['internal', 'react'],
+                    pathGroupsExcludedImportTypes: ['type'],
                     'newlines-between': 'always',
+                    distinctGroup: false,
                     alphabetize: {
                         order: 'asc',
                         caseInsensitive: true,
