@@ -1,0 +1,19 @@
+.card {
+    padding: 20px;
+}
+
+.title {
+    margin-bottom: 15px;
+
+    color: var(--color-blue);
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 120%;
+}
+
+.description {
+    color: var(--color-text);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+}
