@@ -1,6 +1,8 @@
 import type { Preview } from '@storybook/react'
+import { StyleDecorator } from './StyleDecorator.tsx'
 
 const preview: Preview = {
+    decorators: [StyleDecorator],
     parameters: {
         controls: {
             matchers: {
@@ -13,7 +15,7 @@ const preview: Preview = {
             values: [
                 {
                     name: 'light',
-                    value: '#ffffff',
+                    value: '#F4F5F9',
                 },
                 {
                     name: 'dark',

@@ -49,7 +49,13 @@ const config: StorybookConfig = {
             if (typeof rule === 'object' && rule !== null && 'test' in rule) {
                 const test = rule.test
                 if (test instanceof RegExp) {
-                    return !(test.test('.css') || test.test('.scss') || test.test('.sass'))
+                    // Удаляем правила для CSS/SCSS и SVG
+                    return !(
+                        test.test('.css') ||
+                        test.test('.scss') ||
+                        test.test('.sass') ||
+                        test.test('.svg')
+                    )
                 }
             }
             return true
@@ -57,6 +63,12 @@ const config: StorybookConfig = {
 
         // Использование конфигурации CSS loader из проекта
         config.module.rules.push(buildCssLoader(true))
+
+        // Добавление поддержки SVGR для SVG иконок
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ['@svgr/webpack'],
+        })
 
         return config
     },
