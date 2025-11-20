@@ -3,7 +3,13 @@
  * https://jestjs.io/docs/configuration
  */
 
-import path from 'path'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const PROJECT_ROOT = path.resolve(__dirname, '../..')
 
 export default {
   // Automatically clear mock calls, instances and results before every test
@@ -38,6 +44,7 @@ export default {
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
     '\\.(svg)$': path.resolve(__dirname, 'JestEmptyComponent.tsx'),
+    '^@/(.*)$': path.resolve(PROJECT_ROOT, 'src/$1'),
   },
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
