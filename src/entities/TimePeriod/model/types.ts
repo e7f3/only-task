@@ -16,6 +16,10 @@ export interface HistoricalEvent {
 
 export interface TimePeriod {
   /**
+   * Уникальный идентификатор
+   */
+  readonly id: string
+  /**
    * Год начала периода
    */
   readonly yearFrom: number
@@ -28,7 +32,7 @@ export interface TimePeriod {
    */
   readonly label: string
   /**
-   * События, связанные с этим периодом
+   * События, связанные с этим периодом и категорией
    */
   readonly events: readonly HistoricalEvent[]
 }

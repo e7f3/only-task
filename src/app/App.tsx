@@ -1,7 +1,9 @@
 import './styles/index.scss'
 
+import { TimeFrameSlider } from '@/widgets/TimeFrameSlider'
+
 const App = () => {
-  return <div>Test</div>
+  return <TimeFrameSlider />
 }
 
 export default App

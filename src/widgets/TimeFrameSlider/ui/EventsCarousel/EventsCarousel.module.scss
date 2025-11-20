@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+
+    opacity: 0;
+}
+
+.prevButtonWrapper {
+    position: absolute;
+    top: 50%;
+    left: -25px;
+    z-index: 10;
+
+    transform: translateY(-50%);
+
+    transition: opacity 0.3s ease;
+}
+
+.nextButtonWrapper {
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    z-index: 10;
+
+    transform: translateY(-50%) rotate(180deg);
+
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    opacity: 0;
+
+    pointer-events: none;
+}
