@@ -1,0 +1,162 @@
+.container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 1440px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    color: var(--color-text);
+    font-family: var(--font-family-main);
+
+    border-right: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+
+    overflow: hidden;
+
+    @media (width <=768px) {
+        min-height: auto;
+        padding: 20px;
+    }
+}
+
+.title {
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 40px;
+    padding-left: 60px;
+
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 120%;
+
+    @media (width <=768px) {
+        margin-bottom: 20px;
+        padding-left: 0;
+
+        font-size: 20px;
+    }
+}
+
+.content {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr;
+
+    height: 600px;
+
+    @media (width <=768px) {
+        display: flex;
+        flex-direction: column;
+
+        height: auto;
+    }
+}
+
+.controls {
+    position: absolute;
+    left: 60px;
+    bottom: 50px;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (width <=768px) {
+        position: static;
+
+        order: 2;
+
+        margin-top: 20px;
+        padding: 0;
+    }
+}
+
+.pagination {
+    margin-bottom: 10px;
+
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.centerDate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+
+    display: flex;
+    gap: 40px;
+
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 200px;
+    line-height: 160px;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+
+    @media (width <=768px) {
+        position: static;
+
+        gap: 20px;
+        justify-content: center;
+
+        margin-bottom: 40px;
+
+        font-size: 56px;
+
+        transform: none;
+    }
+
+    span:first-child {
+        color: #5d5fef;
+    }
+
+    span:last-child {
+        color: #ef5da8;
+    }
+}
+
+.periodLabel {
+    display: none;
+
+    @media (width <=768px) {
+        order: 1;
+
+        display: block;
+
+        margin-bottom: 40px;
+        padding-top: 40px;
+
+        color: var(--color-text);
+        font-weight: 700;
+        font-size: 20px;
+        text-align: center;
+
+        border-top: 1px solid var(--color-border);
+    }
+}
+
+.circleContainer {
+    @media (width <=768px) {
+        display: none;
+    }
+}
