@@ -13,7 +13,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-import ChevronIcon from '@/shared/assets/chevron--left.svg'
+import ChevronSvg from '@/shared/assets/chevron--left.svg'
 import { Button } from '@/shared/ui/Button'
 import { Card } from '@/shared/ui/Card'
 
@@ -123,7 +123,7 @@ export const EventsCarousel = memo(
             className='swiper-button-prev-custom'
             aria-label='Предыдущий слайд'
           >
-            <ChevronIcon />
+            <ChevronSvg width={6} height={9} stroke='#3877EE' />
           </Button>
         </div>
 
@@ -139,7 +139,7 @@ export const EventsCarousel = memo(
             className='swiper-button-next-custom'
             aria-label='Следующий слайд'
           >
-            <ChevronIcon />
+            <ChevronSvg width={6} height={9} stroke='#3877EE' />
           </Button>
         </div>
 
