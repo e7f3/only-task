@@ -8,17 +8,13 @@
  * Поддерживает клик по точкам для переключения периодов.
  */
 
+import classNames from 'classnames'
 import gsap from 'gsap'
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 
 import styles from './CircleTimeline.module.scss'
-import {
-  ANIMATION_DURATION,
-  ANIMATION_EASE,
-  CIRCLE_RADIUS,
-  FULL_CIRCLE_DEGREES,
-  HALF_CIRCLE_DEGREES,
-} from '../../model'
+import { calculateCoordinates } from '../../lib/utils/calculateCoordinates/calculateCoordinates'
+import { ANIMATION_DURATION, ANIMATION_EASE } from '../../model'
 
 import type { TimePeriod } from '@/entities/TimePeriod'
 
@@ -90,7 +86,7 @@ export const CircleTimeline = memo(function CircleTimeline({
       if (point) {
         gsap.to(point, {
           rotation: -rotation,
-          duration: ANIMATION_DURATION,
+          duration: 0,
           ease: ANIMATION_EASE,
         })
       }
@@ -102,19 +98,9 @@ export const CircleTimeline = memo(function CircleTimeline({
    * Пересчитывается только при изменении количества периодов
    */
   const pointPositions = useMemo(() => {
-    return periods.map((_, index) => {
-      // Угол для текущей точки (в градусах)
-      const angle = (FULL_CIRCLE_DEGREES / periods.length) * index
-
-      // Конвертация в радианы для тригонометрических функций
-      const radian = (angle * Math.PI) / HALF_CIRCLE_DEGREES
-
-      // Вычисление координат на круге
-      const x = CIRCLE_RADIUS * Math.cos(radian)
-      const y = CIRCLE_RADIUS * Math.sin(radian)
-
-      return { x, y }
-    })
+    return periods.map((_, index, array) =>
+      calculateCoordinates(array.length, index)
+    )
   }, [periods])
 
   /**
@@ -139,7 +125,9 @@ export const CircleTimeline = memo(function CircleTimeline({
             ref={(el) => {
               pointsRef.current[index] = el
             }}
-            className={`${styles.point} ${index === activeIndex ? styles.active : ''}`}
+            className={classNames(styles.point, {
+              [styles.active]: index === activeIndex,
+            })}
             style={{
               left: `calc(50% + ${x}px)`,
               top: `calc(50% + ${y}px)`,
