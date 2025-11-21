@@ -9,11 +9,19 @@
     font-weight: 400;
     font-size: 25px;
     line-height: 120%;
+
+    @media (width <=768px) {
+        font-size: 16px;
+    }
 }
 
 .description {
     color: var(--color-text);
     font-weight: 400;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 145%;
+
+    @media (width <=768px) {
+        font-size: 14px;
+    }
 }
