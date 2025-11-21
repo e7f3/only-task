@@ -1,5 +1,7 @@
 import { Navigation } from 'swiper/modules'
 
+import styles from './EventsCarousel.module.scss'
+
 import type { SwiperOptions } from 'swiper/types'
 
 /**
@@ -7,16 +9,31 @@ import type { SwiperOptions } from 'swiper/types'
  */
 export const EVENT_CAROUSEL_CONFIG: SwiperOptions = {
   modules: [Navigation],
-  spaceBetween: 30,
   slidesPerView: 1.5,
-  breakpoints: {
-    768: {
-      slidesPerView: 3.5,
-    },
-  },
+  spaceBetween: 25,
   navigation: {
     prevEl: '.swiper-button-prev-custom',
     nextEl: '.swiper-button-next-custom',
+    enabled: false,
+  },
+  breakpoints: {
+    576: {
+      slidesPerView: 2,
+    },
+    768: {
+      slidesPerView: 3,
+      navigation: {
+        enabled: true,
+      },
+      spaceBetween: 30,
+    },
+    1440: {
+      slidesPerView: 3,
+      navigation: {
+        enabled: true,
+      },
+      spaceBetween: 80,
+    },
   },
 }
 

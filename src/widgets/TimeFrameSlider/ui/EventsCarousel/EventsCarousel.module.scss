@@ -31,3 +31,23 @@
 
     pointer-events: none;
 }
+
+:global(.swiper-slide-next) {
+    transition: opacity 0.3s ease;
+
+    @media (width <=576px) {
+        opacity: 0.4;
+    }
+}
+
+:global(.swiper-slide-prev) {
+    transition: opacity 0.3s ease;
+
+    @media (width <=576px) {
+        opacity: 0.4;
+    }
+}
+
+:global(.swiper-slide-active) {
+    opacity: 1;
+}

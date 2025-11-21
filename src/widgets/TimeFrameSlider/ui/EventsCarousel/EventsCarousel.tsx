@@ -145,6 +145,7 @@ export const EventsCarousel = memo(
 
         <Swiper
           {...EVENT_CAROUSEL_CONFIG}
+          watchSlidesProgress
           onInit={handleSwiperInit}
           onSlideChange={handleSlideChange}
         >
