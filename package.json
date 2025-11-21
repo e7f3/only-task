@@ -12,7 +12,7 @@
         "test:unit": "jest --config ./config/jest/jest.config.ts",
         "type-check": "tsc --noEmit",
         "prepare": "husky",
-        "pre-push": "pnpm type-check && pnpm lint && pnpm lint:styles && pnpm build:prod",
+        "pre-push": "pnpm type-check && pnpm lint && pnpm lint:styles && pnpm test:unit && pnpm build:prod",
         "storybook": "storybook dev -p 6006 -c config/storybook",
         "build-storybook": "storybook build -c config/storybook"
     },
