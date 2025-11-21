@@ -24,8 +24,9 @@
     overflow: hidden;
 
     @media (width <=768px) {
-        min-height: auto;
-        padding: 20px;
+        padding: 60px 20px 20px;
+
+        background-image: unset;
     }
 }
 
@@ -47,10 +48,15 @@
 
 
     @media (width <=768px) {
+        position: relative;
+        inset: unset;
+
         margin-bottom: 20px;
         padding-left: 0;
 
         font-size: 20px;
+
+        border: none;
     }
 }
 
@@ -70,10 +76,16 @@
     background-size: 100% 1px;
 
     @media (width <=768px) {
+        position: unset;
+
         display: flex;
         flex-direction: column;
 
+        width: 100%;
         height: auto;
+        margin: 0;
+
+        background-image: unset;
     }
 }
 
@@ -90,9 +102,12 @@
     transform-origin: left;
 
     @media (width <=768px) {
-        position: static;
+        left: 20px;
+        bottom: 13px;
 
         order: 2;
+
+        gap: 10px;
 
         margin-top: 20px;
         padding: 0;
@@ -107,6 +122,59 @@
 .buttons {
     display: flex;
     gap: 20px;
+
+    @media (width <=768px) {
+        gap: 8px;
+    }
+}
+
+.chevronIcon {
+    width: 9px;
+    height: 14px;
+
+    @media (width <=768px) {
+        width: 6px;
+        height: 11.5px;
+    }
+}
+
+.dots {
+    display: none;
+
+    @media (width <=768px) {
+        position: absolute;
+        left: 50%;
+        bottom: 32px;
+
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+
+        width: 100%;
+
+        transform: translate(-50%, -50%);
+    }
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: var(--color-primary);
+
+    cursor: pointer;
+
+    opacity: 0.4;
+
+    transition: opacity 0.3s ease;
+
+    &.activeDot {
+        opacity: 1;
+    }
 }
 
 .rotated {
@@ -120,7 +188,7 @@
     z-index: 0;
 
     display: flex;
-    gap: 40px;
+    gap: 60px;
 
     color: var(--color-text);
     font-weight: 700;
@@ -161,15 +229,12 @@
 
         display: block;
 
-        margin-bottom: 40px;
-        padding-top: 40px;
+        margin-bottom: 20px;
 
         color: var(--color-text);
         font-weight: 700;
-        font-size: 20px;
-        text-align: center;
-
-        border-top: 1px solid var(--color-border);
+        font-size: 16px;
+        text-align: left;
     }
 }
 
@@ -179,6 +244,12 @@
     }
 }
 
-.eventCarousel {
+.carouselContainer {
     padding: 55px 80px 105px;
+
+    @media (width <=768px) {
+        padding: 0;
+
+        border-top: 1px solid #C7CDD9;
+    }
 }
