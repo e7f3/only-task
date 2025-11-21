@@ -10,7 +10,7 @@ import { HISTORICAL_PERIODS } from '@/entities/TimePeriod'
 import ChevronSvg from '@/shared/assets/chevron--left.svg'
 import { Button } from '@/shared/ui/Button'
 
-import { ACTIVE_POSITION_ANGLE } from './constants'
+import { ACTIVE_POSITION_ANGLE, GSAP_ANIMATION_CONFIG } from './constants'
 import styles from './TimeFrameSlider.module.scss'
 import { CircleTimeline } from '../CircleTimeline/CircleTimeline'
 import { EventsCarousel } from '../EventsCarousel/EventsCarousel'
@@ -35,15 +35,19 @@ export const TimeFrameSlider = memo(() => {
   const endYearRef = useRef<HTMLSpanElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Мемоизированные константы
-  const totalPeriods = useMemo(() => HISTORICAL_PERIODS.length, [])
-  const anglePerPoint = useMemo(() => 360 / totalPeriods, [totalPeriods])
-
   // Текущий период
   const currentPeriod = useMemo(
     () => HISTORICAL_PERIODS[activePeriod],
     [activePeriod]
   )
+
+  // Мемоизированные константы
+  const totalPeriods = useMemo(() => HISTORICAL_PERIODS.length, [])
+  const anglePerPoint = useMemo(() => 360 / totalPeriods, [totalPeriods])
+
+  // Рефы для предыдущих значений периода
+  const prevYearFromRef = useRef(currentPeriod.yearFrom)
+  const prevYearToRef = useRef(currentPeriod.yearTo)
 
   /**
    * Расчет поворота при изменении активного периода
@@ -68,22 +72,33 @@ export const TimeFrameSlider = memo(() => {
 
     const ctx = gsap.context(() => {
       if (startYearRef.current) {
-        gsap.to(startYearRef.current, {
-          innerText: currentPeriod.yearFrom,
-          snap: { innerText: 1 },
-          duration: 1,
-          ease: 'power2.inOut',
-        })
+        gsap.fromTo(
+          startYearRef.current,
+          {
+            innerText: prevYearFromRef.current,
+          },
+          {
+            innerText: currentPeriod.yearFrom,
+            ...GSAP_ANIMATION_CONFIG,
+          }
+        )
       }
 
       if (endYearRef.current) {
-        gsap.to(endYearRef.current, {
-          innerText: currentPeriod.yearTo,
-          snap: { innerText: 1 },
-          duration: 1,
-          ease: 'power2.inOut',
-        })
+        gsap.fromTo(
+          endYearRef.current,
+          {
+            innerText: prevYearToRef.current,
+          },
+          {
+            innerText: currentPeriod.yearTo,
+            ...GSAP_ANIMATION_CONFIG,
+          }
+        )
       }
+
+      prevYearFromRef.current = currentPeriod.yearFrom
+      prevYearToRef.current = currentPeriod.yearTo
     }, containerRef)
 
     return () => ctx.revert()
@@ -112,6 +127,7 @@ export const TimeFrameSlider = memo(() => {
       <div className={styles.content}>
         <div className={styles.centerDate}>
           <span ref={startYearRef}>{currentPeriod.yearFrom}</span>
+          {'\u00A0'}
           <span ref={endYearRef}>{currentPeriod.yearTo}</span>
         </div>
 
@@ -137,7 +153,7 @@ export const TimeFrameSlider = memo(() => {
               onClick={handlePrev}
               aria-label='Предыдущий период'
             >
-              <ChevronSvg width={6.25} height={12.5} stroke='#42567A' />
+              <ChevronSvg width={9} height={14} stroke='#42567A' />
             </Button>
             <Button
               variant='round'
@@ -147,8 +163,8 @@ export const TimeFrameSlider = memo(() => {
               aria-label='Следующий период'
             >
               <ChevronSvg
-                width={6.25}
-                height={12.5}
+                width={9}
+                height={14}
                 stroke='#42567A'
                 className={styles.rotated}
               />
@@ -157,7 +173,9 @@ export const TimeFrameSlider = memo(() => {
         </div>
       </div>
 
-      <EventsCarousel events={currentPeriod.events} visible />
+      <div className={styles.eventCarousel}>
+        <EventsCarousel events={currentPeriod.events} visible />
+      </div>
     </div>
   )
 })
