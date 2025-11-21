@@ -7,7 +7,7 @@
 .prevButtonWrapper {
     position: absolute;
     top: 50%;
-    left: -25px;
+    left: -60px;
     z-index: 10;
 
     transform: translateY(-50%);
@@ -18,7 +18,7 @@
 .nextButtonWrapper {
     position: absolute;
     top: 50%;
-    right: -25px;
+    right: -60px;
     z-index: 10;
 
     transform: translateY(-50%) rotate(180deg);

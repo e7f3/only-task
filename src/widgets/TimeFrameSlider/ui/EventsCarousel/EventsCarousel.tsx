@@ -89,7 +89,7 @@ export const EventsCarousel = memo(
       }, containerRef)
 
       return () => ctx.revert()
-    }, [visible])
+    }, [visible, events])
 
     /**
      * Обработчик инициализации Swiper
