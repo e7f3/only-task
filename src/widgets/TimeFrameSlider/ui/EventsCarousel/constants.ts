@@ -1,4 +1,3 @@
-import gsap from 'gsap'
 import { Navigation } from 'swiper/modules'
 
 import type { SwiperOptions } from 'swiper/types'
