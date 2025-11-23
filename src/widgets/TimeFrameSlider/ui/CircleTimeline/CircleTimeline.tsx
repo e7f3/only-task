@@ -67,6 +67,9 @@ export const CircleTimeline = memo(function CircleTimeline({
   // Реф для массива точек периодов
   const pointsRef = useRef<(HTMLDivElement | null)[]>([])
 
+  // Реф для заголовков периодов
+  const titlesRef = useRef<(HTMLSpanElement | null)[]>([])
+
   /**
    * Эффект для анимации поворота круга и контр-поворота точек
    * Запускается при изменении rotation
@@ -82,16 +85,38 @@ export const CircleTimeline = memo(function CircleTimeline({
     }
 
     // Контр-поворот точек, чтобы текст оставался читаемым
-    pointsRef.current.forEach((point) => {
+    pointsRef.current.forEach((point, index) => {
       if (point) {
         gsap.to(point, {
           rotation: -rotation,
           duration: 0,
           ease: ANIMATION_EASE,
         })
+
+        // Анимация заголовка
+        const title = titlesRef.current[index]
+        if (title) {
+          // Сбрасываем предыдущие анимации для этого элемента
+          gsap.killTweensOf(title)
+
+          if (index === activeIndex) {
+            gsap.to(title, {
+              opacity: 1,
+              visibility: 'visible',
+              duration: 0.5,
+              delay: ANIMATION_DURATION, // Ждем окончания вращения
+            })
+          } else {
+            gsap.to(title, {
+              opacity: 0,
+              visibility: 'hidden',
+              duration: 0.2,
+            })
+          }
+        }
       }
     })
-  }, [rotation])
+  }, [rotation, activeIndex])
 
   /**
    * Мемоизированный расчет позиций точек на круге
@@ -138,7 +163,15 @@ export const CircleTimeline = memo(function CircleTimeline({
             aria-label={`Period ${index + 1}: ${period.label}`}
             aria-current={index === activeIndex ? 'true' : 'false'}
           >
-            <span className={styles.label}>{index + 1}</span>
+            <span className={styles.number}>{index + 1}</span>
+            <span
+              className={styles.title}
+              ref={(el) => {
+                titlesRef.current[index] = el
+              }}
+            >
+              {period.label}
+            </span>
           </div>
         )
       })}
