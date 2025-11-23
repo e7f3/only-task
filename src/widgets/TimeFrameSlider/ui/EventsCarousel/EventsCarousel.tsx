@@ -5,7 +5,7 @@
  */
 
 import classNames from 'classnames'
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 import { memo, useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -145,6 +145,7 @@ export const EventsCarousel = memo(
 
         <Swiper
           {...EVENT_CAROUSEL_CONFIG}
+          watchSlidesProgress
           onInit={handleSwiperInit}
           onSlideChange={handleSlideChange}
         >

@@ -1,4 +1,5 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import CompressionPlugin from 'compression-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import webpack from 'webpack'
@@ -21,6 +22,9 @@ import { BuildOptions } from './types/config'
  * - BundleAnalyzerPlugin: анализирует размер бандла (не открывается автоматически)
  * - ReactRefreshWebpackPlugin: обеспечивает быструю перезагрузку React компонентов
  * - HotModuleReplacementPlugin: включает горячую замену модулей (HMR)
+ *
+ * Плагины только для production:
+ * - CompressionPlugin: создает gzip-сжатые версии файлов для уменьшения размера передачи
  *
  * @param {BuildOptions} options - Опции сборки
  * @param {BuildPaths} options.paths - Пути проекта
@@ -68,6 +72,17 @@ export function buildPlugins({
     )
     plugins.push(new ReactRefreshWebpackPlugin({ overlay: false }))
     plugins.push(new webpack.HotModuleReplacementPlugin())
+  } else {
+    // Сжатие файлов для production сборки
+    // Создает .gz файлы для всех JS и CSS файлов больше 10KB
+    plugins.push(
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10240, // Сжимаем только файлы больше 10KB
+        minRatio: 0.8, // Сжимаем только если размер уменьшается минимум на 20%
+      })
+    )
   }
   return plugins
 }

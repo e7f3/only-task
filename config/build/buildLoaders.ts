@@ -4,7 +4,6 @@ import { buildBabelLoader } from './loaders/buildBabelLoader'
 import { buildCssLoader } from './loaders/buildCssLoader'
 import { buildFileLoader } from './loaders/buildFileLoader'
 import { buildSvgrLoader } from './loaders/buildSvgrLoader'
-import { buildTypescriptLoader } from './loaders/buildTypescriptLoader'
 import { BuildOptions } from './types/config'
 
 /**
@@ -23,15 +22,17 @@ import { BuildOptions } from './types/config'
  * @returns {webpack.RuleSetRule[]} Массив правил для webpack
  */
 export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
-  const babelLoader = buildBabelLoader(isDev)
+  // Используем babel-loader для обработки JS и TS файлов
+  // Это ускоряет сборку, так как babel работает быстрее ts-loader
+  // Проверка типов должна выполняться отдельно (например, через tsc --noEmit)
+  // Исключаем тестовые и storybook файлы из production сборки
+  const codeBabelLoader = buildBabelLoader(isDev)
 
   const fileLoader = buildFileLoader()
 
   const svgrLoader = buildSvgrLoader()
 
-  const typescriptLoader = buildTypescriptLoader()
-
   const cssLoader = buildCssLoader(isDev)
 
-  return [fileLoader, svgrLoader, babelLoader, typescriptLoader, cssLoader]
+  return [fileLoader, svgrLoader, codeBabelLoader, cssLoader]
 }
