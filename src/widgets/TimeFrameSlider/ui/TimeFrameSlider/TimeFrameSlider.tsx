@@ -132,74 +132,76 @@ export const TimeFrameSlider = memo(() => {
   }, [totalPeriods])
 
   return (
-    <div className={styles.container} ref={containerRef}>
-      <h1 className={styles.title}>Исторические даты</h1>
+    <div className={styles.wrapper}>
+      <div className={styles.container} ref={containerRef}>
+        <h1 className={styles.title}>Исторические даты</h1>
 
-      <div className={styles.content}>
-        <div className={styles.centerDate}>
-          <span ref={startYearRef}>{currentPeriod.yearFrom}</span>
-          <span ref={endYearRef}>{currentPeriod.yearTo}</span>
-        </div>
-
-        <div className={styles.periodLabel} ref={periodLabelRef}>
-          {currentPeriod.label}
-        </div>
-
-        <div className={styles.circleContainer}>
-          <CircleTimeline
-            periods={HISTORICAL_PERIODS}
-            activeIndex={activePeriod}
-            onPeriodChange={setActivePeriod}
-            rotation={rotation}
-          />
-        </div>
-
-        <div className={styles.controls}>
-          <div className={styles.pagination}>
-            {String(activePeriod + 1).padStart(2, '0')}/
-            {String(totalPeriods).padStart(2, '0')}
+        <div className={styles.content}>
+          <div className={styles.centerDate}>
+            <span ref={startYearRef}>{currentPeriod.yearFrom}</span>
+            <span ref={endYearRef}>{currentPeriod.yearTo}</span>
           </div>
-          <div className={styles.buttons}>
-            <Button
-              variant='round'
-              size='medium'
-              colorScheme='primary'
-              onClick={handlePrev}
-              aria-label='Предыдущий период'
-            >
-              <ChevronSvg className={styles.chevronIcon} stroke='#42567A' />
-            </Button>
-            <Button
-              variant='round'
-              size='medium'
-              colorScheme='primary'
-              onClick={handleNext}
-              aria-label='Следующий период'
-            >
-              <ChevronSvg
-                className={classNames(styles.chevronIcon, styles.rotated)}
-                stroke='#42567A'
-              />
-            </Button>
+
+          <div className={styles.periodLabel} ref={periodLabelRef}>
+            {currentPeriod.label}
+          </div>
+
+          <div className={styles.circleContainer}>
+            <CircleTimeline
+              periods={HISTORICAL_PERIODS}
+              activeIndex={activePeriod}
+              onPeriodChange={setActivePeriod}
+              rotation={rotation}
+            />
+          </div>
+
+          <div className={styles.controls}>
+            <div className={styles.pagination}>
+              {String(activePeriod + 1).padStart(2, '0')}/
+              {String(totalPeriods).padStart(2, '0')}
+            </div>
+            <div className={styles.buttons}>
+              <Button
+                variant='round'
+                size='medium'
+                colorScheme='primary'
+                onClick={handlePrev}
+                aria-label='Предыдущий период'
+              >
+                <ChevronSvg className={styles.chevronIcon} stroke='#42567A' />
+              </Button>
+              <Button
+                variant='round'
+                size='medium'
+                colorScheme='primary'
+                onClick={handleNext}
+                aria-label='Следующий период'
+              >
+                <ChevronSvg
+                  className={classNames(styles.chevronIcon, styles.rotated)}
+                  stroke='#42567A'
+                />
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className={styles.carouselContainer}>
-        <EventsCarousel events={currentPeriod.events} visible />
-      </div>
+        <div className={styles.carouselContainer}>
+          <EventsCarousel events={currentPeriod.events} visible />
+        </div>
 
-      <div className={styles.dots}>
-        {HISTORICAL_PERIODS.map((_, index) => (
-          <button
-            key={index}
-            className={classNames(styles.dot, {
-              [styles.activeDot]: index === activePeriod,
-            })}
-            onClick={() => setActivePeriod(index)}
-            aria-label={`Перейти к периоду ${index + 1}`}
-          />
-        ))}
+        <div className={styles.dots}>
+          {HISTORICAL_PERIODS.map((_, index) => (
+            <button
+              key={index}
+              className={classNames(styles.dot, {
+                [styles.activeDot]: index === activePeriod,
+              })}
+              onClick={() => setActivePeriod(index)}
+              aria-label={`Перейти к периоду ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
