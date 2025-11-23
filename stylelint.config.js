@@ -53,5 +53,11 @@ module.exports = {
     'order/properties-order': propertyOrdering,
     'declaration-empty-line-before': null,
     'no-descending-specificity': null, // Отключаем из-за конфликта с order/order
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global'],
+      },
+    ],
   },
 }
