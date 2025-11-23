@@ -4,9 +4,10 @@
  * Отображает список исторических событий в виде слайдера
  */
 
+import { useGSAP } from '@gsap/react'
 import classNames from 'classnames'
 import { gsap } from 'gsap'
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
@@ -45,7 +46,7 @@ export interface EventsCarouselProps {
  *
  * Использует Swiper для создания слайдера с кастомной навигацией.
  * Поддерживает адаптивное количество слайдов на разных размерах экрана.
- * Анимирует появление/исчезновение с помощью GSAP.
+ * Анимирует появление/исчезновение с помощью GSAP useGSAP hook.
  *
  * @example
  * ```tsx
@@ -62,13 +63,11 @@ export const EventsCarousel = memo(
     const [isEnd, setIsEnd] = useState(false)
 
     /**
-     * Эффект для анимации появления/исчезновения карусели
-     * Использует GSAP для плавной анимации opacity и y-позиции
+     * Анимация появления/исчезновения карусели
+     * Использует useGSAP hook для автоматической очистки анимаций
      */
-    useEffect(() => {
-      if (!containerRef.current) return
-
-      const ctx = gsap.context(() => {
+    useGSAP(
+      () => {
         if (visible) {
           gsap.fromTo(
             containerRef.current,
@@ -86,10 +85,9 @@ export const EventsCarousel = memo(
             duration: HIDE_DURATION,
           })
         }
-      }, containerRef)
-
-      return () => ctx.revert()
-    }, [visible, events])
+      },
+      { scope: containerRef, dependencies: [visible, events] }
+    )
 
     /**
      * Обработчик инициализации Swiper

@@ -3,6 +3,7 @@
  * Главный компонент временной шкалы с круговой диаграммой и каруселью событий
  */
 
+import { useGSAP } from '@gsap/react'
 import classNames from 'classnames'
 import { gsap } from 'gsap'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -21,7 +22,7 @@ import { EventsCarousel } from '../EventsCarousel/EventsCarousel'
  *
  * Отображает исторические периоды на круговой диаграмме с возможностью
  * переключения между ними. Для каждого периода показывается карусель событий.
- * Центральные даты анимируются при смене периода с помощью GSAP.
+ * Центральные даты анимируются при смене периода с помощью GSAP useGSAP hook.
  *
  * @example
  * ```tsx
@@ -66,13 +67,11 @@ export const TimeFrameSlider = memo(() => {
   }, [activePeriod, anglePerPoint])
 
   /**
-   * Анимация центральных дат с использованием GSAP
+   * Анимация центральных дат с использованием GSAP useGSAP hook
    * Плавно изменяет числа при смене периода
    */
-  useEffect(() => {
-    if (!containerRef.current) return
-
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
       if (startYearRef.current) {
         gsap.fromTo(
           startYearRef.current,
@@ -109,10 +108,12 @@ export const TimeFrameSlider = memo(() => {
           { opacity: 1, visibility: 'visible', duration: 1 }
         )
       }
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [currentPeriod.yearFrom, currentPeriod.yearTo])
+    },
+    {
+      scope: containerRef,
+      dependencies: [currentPeriod.yearFrom, currentPeriod.yearTo],
+    }
+  )
 
   /**
    * Переключение на предыдущий период
