@@ -13,9 +13,11 @@ import { BuildOptions } from './types/config'
  * Текущий порядок:
  * 1. fileLoader - обрабатывает изображения и шрифты
  * 2. svgrLoader - преобразует SVG в React компоненты
- * 3. babelLoader - транспилирует JS/JSX/TSX с React Refresh
- * 4. typescriptLoader - компилирует TypeScript
- * 5. cssLoader - обрабатывает CSS/SCSS с модулями
+ * 3. babelLoader - транспилирует JS/JSX/TS/TSX с помощью Babel (включая TypeScript)
+ * 4. cssLoader - обрабатывает CSS/SCSS с модулями
+ *
+ * Примечание: TypeScript компилируется через Babel (@babel/preset-typescript),
+ * а не через ts-loader. Проверка типов выполняется отдельно через `tsc --noEmit`.
  *
  * @param {BuildOptions} options - Опции сборки
  * @param {boolean} options.isDev - Флаг режима разработки
