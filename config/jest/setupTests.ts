@@ -22,3 +22,15 @@ jest.mock('gsap', () => {
         Power2: gsapMock.Power2, // Экспортируем Power2 отдельно
     }
 })
+
+// Глобальный мок для @gsap/react
+jest.mock('@gsap/react', () => ({
+    useGSAP: (fn: () => void) => {
+        // Выполняем функцию немедленно в тестах
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { useEffect } = require('react')
+        useEffect(() => {
+            fn()
+        }, [])
+    },
+}))
