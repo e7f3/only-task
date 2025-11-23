@@ -35,6 +35,7 @@ export const TimeFrameSlider = memo(() => {
   const startYearRef = useRef<HTMLSpanElement>(null)
   const endYearRef = useRef<HTMLSpanElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const periodLabelRef = useRef<HTMLDivElement>(null)
 
   // Текущий период
   const currentPeriod = useMemo(
@@ -100,6 +101,14 @@ export const TimeFrameSlider = memo(() => {
 
       prevYearFromRef.current = currentPeriod.yearFrom
       prevYearToRef.current = currentPeriod.yearTo
+
+      if (periodLabelRef.current) {
+        gsap.fromTo(
+          periodLabelRef.current,
+          { opacity: 0, visibility: 'hidden' },
+          { opacity: 1, visibility: 'visible', duration: 1 }
+        )
+      }
     }, containerRef)
 
     return () => ctx.revert()
@@ -131,7 +140,9 @@ export const TimeFrameSlider = memo(() => {
           <span ref={endYearRef}>{currentPeriod.yearTo}</span>
         </div>
 
-        <div className={styles.periodLabel}>{currentPeriod.label}</div>
+        <div className={styles.periodLabel} ref={periodLabelRef}>
+          {currentPeriod.label}
+        </div>
 
         <div className={styles.circleContainer}>
           <CircleTimeline
