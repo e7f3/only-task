@@ -13,12 +13,17 @@
  */
 export function buildBabelLoader(isDev: boolean) {
   const babelLoader = {
-    test: /\.(js|jsx|tsx)$/,
+    test: /\.(js|jsx|tsx|ts)$/,
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader',
       options: {
-        presets: ['@babel/preset-env'],
+        cacheDirectory: true, // Включаем кеширование для ускорения пересборки
+        presets: [
+          '@babel/preset-env',
+          ['@babel/preset-react', { runtime: 'automatic' }], // Поддержка React 17+ (новый JSX transform)
+          '@babel/preset-typescript', // Поддержка TypeScript через Babel
+        ],
         plugins: [isDev && require.resolve('react-refresh/babel')].filter(
           Boolean
         ),

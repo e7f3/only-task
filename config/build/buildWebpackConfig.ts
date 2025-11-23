@@ -56,5 +56,11 @@ export function buildWebpackConfig(
     plugins: buildPlugins(options),
     devtool: isDev ? 'inline-source-map' : undefined,
     devServer: isDev ? buildDevServer(options) : undefined,
+    optimization: {
+      splitChunks: {
+        chunks: 'all', // Разделяем код на чанки для оптимизации загрузки
+      },
+      runtimeChunk: 'single', // Выносим рантайм webpack в отдельный файл
+    },
   }
 }
