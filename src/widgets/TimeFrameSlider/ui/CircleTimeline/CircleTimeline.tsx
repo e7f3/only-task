@@ -9,7 +9,7 @@
  */
 
 import classNames from 'classnames'
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 
 import styles from './CircleTimeline.module.scss'

@@ -4,7 +4,7 @@
  */
 
 import classNames from 'classnames'
-import gsap from 'gsap'
+import { gsap } from 'gsap'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { HISTORICAL_PERIODS } from '@/entities/TimePeriod'

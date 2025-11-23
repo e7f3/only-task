@@ -1,7 +1,5 @@
 import { Navigation } from 'swiper/modules'
 
-import styles from './EventsCarousel.module.scss'
-
 import type { SwiperOptions } from 'swiper/types'
 
 /**
