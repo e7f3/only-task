@@ -101,6 +101,7 @@ export const TimeFrameSlider = memo(() => {
       prevYearFromRef.current = currentPeriod.yearFrom
       prevYearToRef.current = currentPeriod.yearTo
 
+      // Анимация появления лейбла периода
       if (periodLabelRef.current) {
         gsap.fromTo(
           periodLabelRef.current,
