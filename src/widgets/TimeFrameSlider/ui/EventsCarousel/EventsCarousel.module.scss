@@ -32,10 +32,16 @@
     pointer-events: none;
 }
 
+:global(.swiper) {
+    @media (width <=768px) {
+        padding: 0 20px;
+    }
+}
+
 :global(.swiper-slide-next) {
     transition: opacity 0.3s ease;
 
-    @media (width <=576px) {
+    @media (width <=768px) {
         opacity: 0.4;
     }
 }
@@ -43,7 +49,7 @@
 :global(.swiper-slide-prev) {
     transition: opacity 0.3s ease;
 
-    @media (width <=576px) {
+    @media (width <=768px) {
         opacity: 0.4;
     }
 }

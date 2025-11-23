@@ -21,6 +21,13 @@ export const EVENT_CAROUSEL_CONFIG: SwiperOptions = {
       slidesPerView: 2,
     },
     768: {
+      slidesPerView: 2,
+      navigation: {
+        enabled: true,
+      },
+      spaceBetween: 25,
+    },
+    1024: {
       slidesPerView: 3,
       navigation: {
         enabled: true,
