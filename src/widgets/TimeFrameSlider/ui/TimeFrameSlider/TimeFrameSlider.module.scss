@@ -53,6 +53,7 @@
 
     @media (width <=1024px) {
         top: 80px;
+
         font-size: 40px;
     }
 
@@ -214,9 +215,10 @@
     pointer-events: none;
 
     @media (width <=1024px) {
+        gap: 40px;
+
         font-size: 140px;
         line-height: 120px;
-        gap: 40px;
     }
 
     @media (width <=768px) {
@@ -273,8 +275,8 @@
     padding: 55px 80px 105px;
 
     @media (width <=768px) {
-        margin: 0 -20px;
         width: calc(100% + 40px);
+        margin: 0 -20px;
         padding: 0;
     }
 }
