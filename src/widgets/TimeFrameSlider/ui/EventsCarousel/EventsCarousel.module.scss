@@ -33,27 +33,19 @@
 }
 
 :global(.swiper) {
-    @media (width <=768px) {
-        padding: 0 20px;
+    @container timeframe-slider (width <= 768px) {
+        padding: 0 40px;
     }
 }
 
-:global(.swiper-slide-next) {
+:global(.swiper-slide-visible) {
     transition: opacity 0.3s ease;
 
-    @media (width <=768px) {
+    @container timeframe-slider (width < 768px) {
         opacity: 0.4;
     }
 }
 
-:global(.swiper-slide-prev) {
-    transition: opacity 0.3s ease;
-
-    @media (width <=768px) {
-        opacity: 0.4;
-    }
-}
-
-:global(.swiper-slide-active) {
+:global(.swiper-slide-fully-visible) {
     opacity: 1;
 }

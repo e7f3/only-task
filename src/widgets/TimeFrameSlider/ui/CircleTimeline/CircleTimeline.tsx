@@ -8,9 +8,10 @@
  * Поддерживает клик по точкам для переключения периодов.
  */
 
+import { useGSAP } from '@gsap/react'
 import classNames from 'classnames'
 import { gsap } from 'gsap'
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
+import { memo, useCallback, useMemo, useRef } from 'react'
 
 import styles from './CircleTimeline.module.scss'
 import { calculateCoordinates } from '../../lib/utils/calculateCoordinates/calculateCoordinates'
@@ -71,52 +72,55 @@ export const CircleTimeline = memo(function CircleTimeline({
   const titlesRef = useRef<(HTMLSpanElement | null)[]>([])
 
   /**
-   * Эффект для анимации поворота круга и контр-поворота точек
-   * Запускается при изменении rotation
+   * Анимация поворота круга и контр-поворота точек
+   * Использует useGSAP hook для автоматической очистки анимаций
    */
-  useEffect(() => {
-    // Анимация поворота контейнера круга
-    if (circleRef.current) {
-      gsap.to(circleRef.current, {
-        rotation,
-        duration: ANIMATION_DURATION,
-        ease: ANIMATION_EASE,
-      })
-    }
-
-    // Контр-поворот точек, чтобы текст оставался читаемым
-    pointsRef.current.forEach((point, index) => {
-      if (point) {
-        gsap.to(point, {
-          rotation: -rotation,
-          duration: 0,
+  useGSAP(
+    () => {
+      // Анимация поворота контейнера круга
+      if (circleRef.current) {
+        gsap.to(circleRef.current, {
+          rotation,
+          duration: ANIMATION_DURATION,
           ease: ANIMATION_EASE,
         })
+      }
 
-        // Анимация заголовка
-        const title = titlesRef.current[index]
-        if (title) {
-          // Сбрасываем предыдущие анимации для этого элемента
-          gsap.killTweensOf(title)
+      // Контр-поворот точек, чтобы текст оставался читаемым
+      pointsRef.current.forEach((point, index) => {
+        if (point) {
+          gsap.to(point, {
+            rotation: -rotation,
+            duration: 0,
+            ease: ANIMATION_EASE,
+          })
 
-          if (index === activeIndex) {
-            gsap.to(title, {
-              opacity: 1,
-              visibility: 'visible',
-              duration: 0.5,
-              delay: ANIMATION_DURATION, // Ждем окончания вращения
-            })
-          } else {
-            gsap.to(title, {
-              opacity: 0,
-              visibility: 'hidden',
-              duration: 0.2,
-            })
+          // Анимация заголовка
+          const title = titlesRef.current[index]
+          if (title) {
+            // Останавливаем предыдущие анимации для предотвращения конфликтов
+            gsap.killTweensOf(title)
+
+            if (index === activeIndex) {
+              gsap.to(title, {
+                opacity: 1,
+                visibility: 'visible',
+                duration: 0.5,
+                delay: ANIMATION_DURATION, // Ждем окончания вращения
+              })
+            } else {
+              gsap.to(title, {
+                opacity: 0,
+                visibility: 'hidden',
+                duration: 0.2,
+              })
+            }
           }
         }
-      }
-    })
-  }, [rotation, activeIndex])
+      })
+    },
+    { dependencies: [rotation, activeIndex] }
+  )
 
   /**
    * Мемоизированный расчет позиций точек на круге

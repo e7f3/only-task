@@ -94,12 +94,22 @@ Babel используется через `babel-loader` в webpack конфиг
 ```typescript
 // config/build/loaders/buildBabelLoader.ts
 {
-  test: /\.(js|jsx|tsx)$/,
-  exclude: /node_modules/,
+  test: /\.(js|jsx|tsx|ts)$/,
+  exclude: [
+    /node_modules/,
+    /\.test\.(ts|tsx)$/,    // Исключаем тестовые файлы
+    /\.spec\.(ts|tsx)$/,    // Исключаем spec файлы
+    /\.stories\.(ts|tsx)$/  // Исключаем Storybook файлы
+  ],
   use: {
     loader: 'babel-loader',
     options: {
-      presets: ['@babel/preset-env'],
+      cacheDirectory: true, // Кеширование для ускорения пересборки
+      presets: [
+        '@babel/preset-env',
+        ['@babel/preset-react', { runtime: 'automatic' }],
+        '@babel/preset-typescript'  // Компиляция TypeScript через Babel
+      ],
       plugins: [
         isDev && require.resolve('react-refresh/babel')
       ].filter(Boolean)
@@ -107,6 +117,9 @@ Babel используется через `babel-loader` в webpack конфиг
   }
 }
 ```
+
+**Важно:** TypeScript компилируется через Babel, а не через `ts-loader`. 
+Проверка типов выполняется отдельно через `pnpm type-check` (tsc --noEmit).
 
 ## React Refresh (только в dev режиме)
 

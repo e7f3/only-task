@@ -16,7 +16,7 @@ export const EVENT_CAROUSEL_CONFIG: SwiperOptions = {
   },
   breakpoints: {
     576: {
-      slidesPerView: 2,
+      slidesPerView: 2.5,
     },
     768: {
       slidesPerView: 2,

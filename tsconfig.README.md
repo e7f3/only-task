@@ -34,10 +34,20 @@
 - **paths**: Настройка алиасов для импортов
   ```json
   {
+    "@/*": ["./src/*"],
     "*": ["./src/*"]
   }
   ```
-  Позволяет импортировать файлы из `src` без указания полного пути
+  Позволяет импортировать файлы из `src` с использованием `@/` или без префикса
+
+### Типы
+- **types**: Глобальные типы для проекта
+  ```json
+  ["node", "jest", "@testing-library/jest-dom"]
+  ```
+  - `node` - типы Node.js API
+  - `jest` - типы для Jest тестов
+  - `@testing-library/jest-dom` - типы для дополнительных матчеров Jest
 
 ## Настройки ts-node
 
@@ -71,10 +81,13 @@ pnpm type-check
 ### Использование алиасов путей
 ```typescript
 // Вместо:
-import { Button } from '../../../components/Button'
+import { Button } from '../../../shared/ui/Button'
 
-// Можно писать:
-import { Button } from 'components/Button'
+// Можно писать с @ алиасом:
+import { Button } from '@/shared/ui/Button'
+
+// Или без префикса (для совместимости):
+import { Button } from 'shared/ui/Button'
 ```
 
 ### JSX без импорта React
