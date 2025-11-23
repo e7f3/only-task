@@ -25,6 +25,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
   // Используем babel-loader для обработки JS и TS файлов
   // Это ускоряет сборку, так как babel работает быстрее ts-loader
   // Проверка типов должна выполняться отдельно (например, через tsc --noEmit)
+  // Исключаем тестовые и storybook файлы из production сборки
   const codeBabelLoader = buildBabelLoader(isDev)
 
   const fileLoader = buildFileLoader()

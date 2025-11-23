@@ -14,7 +14,12 @@
 export function buildBabelLoader(isDev: boolean) {
   const babelLoader = {
     test: /\.(js|jsx|tsx|ts)$/,
-    exclude: /node_modules/,
+    exclude: [
+      /node_modules/,
+      /\.test\.(ts|tsx)$/, // Исключаем тестовые файлы
+      /\.spec\.(ts|tsx)$/, // Исключаем spec файлы
+      /\.stories\.(ts|tsx)$/, // Исключаем Storybook файлы
+    ],
     use: {
       loader: 'babel-loader',
       options: {
