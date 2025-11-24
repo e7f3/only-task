@@ -1,303 +1,303 @@
 /* Wrapper для container queries - должен быть родителем контейнера */
 .wrapper {
-    /* Включаем container queries для адаптивности виджета */
-    container-type: inline-size;
-    container-name: timeframe-slider;
+  /* Включаем container queries для адаптивности виджета */
+  container-type: inline-size;
+  container-name: timeframe-slider;
 }
 
 .container {
-    position: relative;
+  position: relative;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    width: 100%;
-    max-width: 1440px;
-    min-height: 100vh;
-    margin: 0 auto;
-    padding-top: 180px;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding-top: 180px;
 
-    color: var(--color-text);
-    font-family: var(--font-family-main);
+  color: var(--color-text);
+  font-family: var(--font-family-main);
 
-    border-right: 1px solid var(--color-border);
-    border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
 
-    background-image: linear-gradient(to right, rgba(#42567A, 0.1) 1px, transparent 1px);
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 1px 100%;
+  background-image: linear-gradient(to right, rgba(#42567A, 0.1) 1px, transparent 1px);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 1px 100%;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    @container timeframe-slider (width <= 1024px) {
-        padding-top: 100px;
-    }
+  @container timeframe-slider (width <= 1024px) {
+    padding-top: 100px;
+  }
 
-    @container timeframe-slider (width <= 576px) {
-        padding: 60px 20px 20px;
+  @container timeframe-slider (width <= 576px) {
+    padding: 60px 20px 20px;
 
-        background-image: unset;
-    }
+    background-image: unset;
+  }
 }
 
 .title {
-    position: absolute;
-    top: 170px;
-    left: 0;
-    z-index: 2;
+  position: absolute;
+  top: 170px;
+  left: 0;
+  z-index: 2;
 
-    max-width: 15ch;
-    padding-left: 75px;
+  max-width: 15ch;
+  padding-left: 75px;
 
-    font-weight: 700;
-    font-size: 56px;
-    line-height: 120%;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 120%;
 
-    border-left: 5px solid transparent;
-    border-image: var(--gradient-primary) 1;
-
-
-    @container timeframe-slider (width <= 1024px) {
-        top: 80px;
-
-        font-size: 40px;
-    }
-
-    @container timeframe-slider (width <= 768px) {
-        padding-left: 20px;
-
-        font-size: 34px;
-    }
-
-    @container timeframe-slider (width <= 576px) {
-        position: relative;
-        inset: unset;
-
-        margin-bottom: 20px;
-        padding-left: 0;
+  border-left: 5px solid transparent;
+  border-image: var(--gradient-primary) 1;
 
 
-        border: none;
-    }
+  @container timeframe-slider (width <= 1024px) {
+    top: 80px;
+
+    font-size: 40px;
+  }
+
+  @container timeframe-slider (width <= 768px) {
+    padding-left: 20px;
+
+    font-size: 34px;
+  }
+
+  @container timeframe-slider (width <= 576px) {
+    position: relative;
+    inset: unset;
+
+    margin-bottom: 20px;
+    padding-left: 0;
+
+
+    border: none;
+  }
 }
 
 .content {
-    position: relative;
+  position: relative;
 
-    display: grid;
-    grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
 
-    width: calc(100% + 40px);
-    height: 600px;
-    margin: 0 -20px;
+  width: calc(100% + 40px);
+  height: 600px;
+  margin: 0 -20px;
 
-    background-image: linear-gradient(to bottom, rgba(#42567A, 0.1) 1px, transparent 1px);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 1px;
+  background-image: linear-gradient(to bottom, rgba(#42567A, 0.1) 1px, transparent 1px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 1px;
 
-    @container timeframe-slider (width <= 576px) {
-        position: unset;
-
-        display: flex;
-        flex-direction: column;
-
-        width: 100%;
-        height: auto;
-        margin: 0;
-
-        background-image: unset;
-    }
-}
-
-.controls {
-    position: absolute;
-    left: 100px;
-    bottom: 0;
-    z-index: 10;
+  @container timeframe-slider (width <= 576px) {
+    position: unset;
 
     display: flex;
     flex-direction: column;
-    gap: 20px;
 
-    transform-origin: left;
+    width: 100%;
+    height: auto;
+    margin: 0;
 
-    @container timeframe-slider (width <= 1024px) {
-        left: 100px;
-        bottom: 40px;
-    }
+    background-image: unset;
+  }
+}
 
-    @container timeframe-slider (width <= 768px) {
-        left: 40px;
+.controls {
+  position: absolute;
+  left: 100px;
+  bottom: 0;
+  z-index: 10;
 
-        gap: 10px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
-    @container timeframe-slider (width <= 576px) {
-        left: 20px;
-        bottom: 13px;
+  transform-origin: left;
 
-        order: 2;
+  @container timeframe-slider (width <= 1024px) {
+    left: 100px;
+    bottom: 40px;
+  }
 
-        margin-top: 20px;
-        padding: 0;
-    }
+  @container timeframe-slider (width <= 768px) {
+    left: 40px;
+
+    gap: 10px;
+  }
+
+  @container timeframe-slider (width <= 576px) {
+    left: 20px;
+    bottom: 13px;
+
+    order: 2;
+
+    margin-top: 20px;
+    padding: 0;
+  }
 }
 
 .pagination {
-    font-weight: 400;
-    font-size: 14px;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .buttons {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 
-    @container timeframe-slider (width <= 768px) {
-        gap: 8px;
-    }
+  @container timeframe-slider (width <= 768px) {
+    gap: 8px;
+  }
 }
 
 .chevronIcon {
-    width: 9px;
-    height: 14px;
+  width: 9px;
+  height: 14px;
 
-    @container timeframe-slider (width <= 576px) {
-        width: 6px;
-        height: 11.5px;
-    }
+  @container timeframe-slider (width <= 576px) {
+    width: 6px;
+    height: 11.5px;
+  }
 }
 
 .dots {
-    display: none;
+  display: none;
 
-    @container timeframe-slider (width <= 576px) {
-        position: absolute;
-        left: 50%;
-        bottom: 32px;
+  @container timeframe-slider (width <= 576px) {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
 
-        display: flex;
-        gap: 10px;
-        justify-content: center;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 
-        width: 100%;
+    width: 100%;
 
-        transform: translate(-50%, -50%);
-    }
+    transform: translate(-50%, -50%);
+  }
 }
 
 .dot {
-    width: 6px;
-    height: 6px;
-    padding: 0;
+  width: 6px;
+  height: 6px;
+  padding: 0;
 
-    border: none;
-    border-radius: 50%;
+  border: none;
+  border-radius: 50%;
 
-    background-color: var(--color-primary);
+  background-color: var(--color-primary);
 
-    cursor: pointer;
+  cursor: pointer;
 
-    opacity: 0.4;
+  opacity: 0.4;
 
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 
-    &.activeDot {
-        opacity: 1;
-    }
+  &.activeDot {
+    opacity: 1;
+  }
 }
 
 .rotated {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .centerDate {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
 
-    display: flex;
-    gap: 60px;
+  display: flex;
+  gap: 60px;
 
-    color: var(--color-text);
-    font-weight: 700;
-    font-size: 200px;
-    line-height: 160px;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 200px;
+  line-height: 160px;
 
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
-    pointer-events: none;
+  pointer-events: none;
 
-    @container timeframe-slider (width <= 1024px) {
-        gap: 40px;
+  @container timeframe-slider (width <= 1024px) {
+    gap: 40px;
 
-        font-size: 140px;
-        line-height: 120px;
-    }
+    font-size: 140px;
+    line-height: 120px;
+  }
 
-    @container timeframe-slider (width <= 768px) {
-        font-size: 100px;
-        line-height: 80px;
-    }
+  @container timeframe-slider (width <= 768px) {
+    font-size: 100px;
+    line-height: 80px;
+  }
 
-    @container timeframe-slider (width <= 576px) {
-        position: static;
+  @container timeframe-slider (width <= 576px) {
+    position: static;
 
-        gap: 20px;
-        justify-content: center;
+    gap: 20px;
+    justify-content: center;
 
-        margin-bottom: 40px;
+    margin-bottom: 40px;
 
-        font-size: 56px;
+    font-size: 56px;
 
-        transform: none;
-    }
+    transform: none;
+  }
 
-    span:first-child {
-        color: #5d5fef;
-    }
+  span:first-child {
+    color: #5d5fef;
+  }
 
-    span:last-child {
-        color: #ef5da8;
-    }
+  span:last-child {
+    color: #ef5da8;
+  }
 }
 
 .periodLabel {
-    display: none;
+  display: none;
 
-    @container timeframe-slider (width <= 576px) {
-        order: 1;
+  @container timeframe-slider (width <= 576px) {
+    order: 1;
 
-        display: block;
+    display: block;
 
-        padding-bottom: 20px;
+    padding-bottom: 20px;
 
-        color: var(--color-text);
-        font-weight: 700;
-        font-size: 16px;
-        text-align: left;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 16px;
+    text-align: left;
 
-        border-bottom: 1px solid #C7CDD9;
-    }
+    border-bottom: 1px solid #C7CDD9;
+  }
 }
 
 .circleContainer {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    @container timeframe-slider (width <= 576px) {
-        display: none;
-    }
+  @container timeframe-slider (width <= 576px) {
+    display: none;
+  }
 }
 
 .carouselContainer {
-    padding: 55px 80px 105px;
+  padding: 55px 80px 105px;
 
-    @container timeframe-slider (width <= 768px) {
-        width: calc(100% + 40px);
-        margin: 0 -20px;
-        padding: 0;
-    }
+  @container timeframe-slider (width <= 768px) {
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    padding: 0;
+  }
 }

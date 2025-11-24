@@ -1,27 +1,27 @@
 .card {
-    padding: 20px 0;
+  padding: 20px 0;
 }
 
 .title {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 
-    color: var(--color-blue);
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 120%;
+  color: var(--color-blue);
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 120%;
 
-    @media (width <=768px) {
-        font-size: 16px;
-    }
+  @media (width <=768px) {
+    font-size: 16px;
+  }
 }
 
 .description {
-    color: var(--color-text);
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 145%;
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 145%;
 
-    @media (width <=768px) {
-        font-size: 14px;
-    }
+  @media (width <=768px) {
+    font-size: 14px;
+  }
 }

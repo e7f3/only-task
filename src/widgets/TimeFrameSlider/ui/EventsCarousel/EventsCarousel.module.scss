@@ -1,51 +1,51 @@
 .container {
-    position: relative;
+  position: relative;
 
-    opacity: 0;
+  opacity: 0;
 }
 
 .prevButtonWrapper {
-    position: absolute;
-    top: 50%;
-    left: -60px;
-    z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: -60px;
+  z-index: 10;
 
-    transform: translateY(-50%);
+  transform: translateY(-50%);
 
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .nextButtonWrapper {
-    position: absolute;
-    top: 50%;
-    right: -60px;
-    z-index: 10;
+  position: absolute;
+  top: 50%;
+  right: -60px;
+  z-index: 10;
 
-    transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
 
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .hidden {
-    opacity: 0;
+  opacity: 0;
 
-    pointer-events: none;
+  pointer-events: none;
 }
 
 :global(.swiper) {
-    @container timeframe-slider (width <= 768px) {
-        padding: 0 40px;
-    }
+  @container timeframe-slider (width <= 768px) {
+    padding: 0 40px;
+  }
 }
 
 :global(.swiper-slide-visible) {
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 
-    @container timeframe-slider (width < 768px) {
-        opacity: 0.4;
-    }
+  @container timeframe-slider (width < 768px) {
+    opacity: 0.4;
+  }
 }
 
 :global(.swiper-slide-fully-visible) {
-    opacity: 1;
+  opacity: 1;
 }
