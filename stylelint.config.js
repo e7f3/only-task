@@ -46,8 +46,12 @@ const {
 
 module.exports = {
   extends: 'stylelint-config-standard-scss',
-  plugins: ['stylelint-order'],
+  plugins: [
+    'stylelint-order',
+    '@stylistic/stylelint-plugin',
+  ],
   rules: {
+    '@stylistic/indentation': 2,
     'selector-class-pattern': null,
     'order/order': selectorOrdering,
     'order/properties-order': propertyOrdering,

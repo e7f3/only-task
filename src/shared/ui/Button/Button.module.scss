@@ -1,108 +1,108 @@
 .button {
-    display: inline-flex;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+
+  font-family: var(--font-family-main);
+
+  border: none;
+
+  background: transparent;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.5;
+  }
+
+  // Variants
+  &.round {
+    border-radius: 50%;
+    aspect-ratio: 1;
+  }
+
+  &.regular {
+    padding: 0.5em 1em;
+
+    border-radius: 1em;
+  }
+
+  // Sizes
+  &.small {
+    height: 40px;
+
+    font-size: 14px;
+
+    @media (width <=768px) {
+      height: 20px;
+    }
+  }
+
+  &.medium {
+    height: 50px;
+
+    font-size: 18px;
+
+    @media (width <=768px) {
+      height: 25px;
+    }
+  }
+
+  &.large {
+    height: 60px;
+
+    font-size: 24px;
+
+    @media (width <=768px) {
+      height: 30px;
+    }
+  }
+
+  // Color Schemes
+  &.primary {
+    $color-primary: var(--color-primary);
+    color: $color-primary;
+
+    border: 1px solid $color-primary;
+
+    background-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-white);
+    }
+  }
+
+  &.secondary {
+    $color-blue: var(--color-blue);
+    color: $color-blue;
+
+    background-color: var(--color-white);
+
+    box-shadow: 0 0 15px rgb($color-blue / 10%);
+  }
+
+  // Icon handling
+  .icon {
+    display: flex;
     justify-content: center;
     align-items: center;
 
-    padding: 0;
+    width: 100%;
+    height: 100%;
 
-    font-family: var(--font-family-main);
+    svg {
+      width: 40%;
+      height: 40%;
 
-    border: none;
-
-    background: transparent;
-
-    outline: none;
-
-    cursor: pointer;
-
-    transition: all 0.3s ease;
-
-    &:disabled {
-        cursor: not-allowed;
-
-        opacity: 0.5;
+      object-fit: contain;
     }
-
-    // Variants
-    &.round {
-        border-radius: 50%;
-        aspect-ratio: 1;
-    }
-
-    &.regular {
-        padding: 0.5em 1em;
-
-        border-radius: 1em;
-    }
-
-    // Sizes
-    &.small {
-        height: 40px;
-
-        font-size: 14px;
-
-        @media (width <=768px) {
-            height: 20px;
-        }
-    }
-
-    &.medium {
-        height: 50px;
-
-        font-size: 18px;
-
-        @media (width <=768px) {
-            height: 25px;
-        }
-    }
-
-    &.large {
-        height: 60px;
-
-        font-size: 24px;
-
-        @media (width <=768px) {
-            height: 30px;
-        }
-    }
-
-    // Color Schemes
-    &.primary {
-        $color-primary: var(--color-primary);
-        color: $color-primary;
-
-        border: 1px solid $color-primary;
-
-        background-color: transparent;
-
-        &:hover:not(:disabled) {
-            background-color: var(--color-white);
-        }
-    }
-
-    &.secondary {
-        $color-blue: var(--color-blue);
-        color: $color-blue;
-
-        background-color: var(--color-white);
-
-        box-shadow: 0 0 15px rgb($color-blue / 10%);
-    }
-
-    // Icon handling
-    .icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width: 100%;
-        height: 100%;
-
-        svg {
-            width: 40%;
-            height: 40%;
-
-            object-fit: contain;
-        }
-    }
+  }
 }
